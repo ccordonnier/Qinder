@@ -47,6 +47,56 @@ class DB
             return false;
         }
     }
+
+    //RUN A UPDATE QUERY
+    function update(array $cond)
+    {
+        $result = false;
+        try {
+
+
+            $sql = "SELECT * FROM q WHERE id=?";
+            $result = $this->select($sql, [$cond['id']]);
+            if ($result) {
+                $result[0]['likes']++;
+            } else {
+                //echo "<pre>";
+                die($this->error);
+                //echo "</pre>";
+            }
+
+            $this->stmt = $this->pdo->prepare("UPDATE q set url=:url, likes= :likes, dislikes= :dislikes WHERE id=:id");
+
+
+
+
+            if ($this->stmt->execute($result[0])) {
+                return $this->getQById($cond['id']);
+            }
+        } catch (Exception $ex) {
+            $this->error = $ex->getMessage();
+            return false;
+        }
+    }
+
+    /**
+     * This function find a Q by his id
+     *
+     * @param int $id
+     * @return array The fetch array of the Q who get the id $id
+     */
+    function getQById($id)
+    {
+        $req_content = "SELECT * FROM q WHERE id=?";
+        $req = $this->select($req_content, [$id])[0];
+        return $req;
+    }
+
+    function addLikes(int $id)
+    {
+        $cond = $this->getQById($id);
+        return $this->update($cond);
+    }
 }
 
 //DATABASE SETTINGS

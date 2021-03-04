@@ -1,62 +1,134 @@
 <?php
 include("./db_connect.php");
 
+/**
+ * Class Q represent a q
+ * @var int $id : Unique id of the Q 
+ * @var string $url : Url of the image of the Q
+ * @var int $likes : Number of likes of this Q
+ * @var int $dislikes : Number of dislikes of this Q
+ */
 class Q
 {
     private $id;
-    private $url;
-    private $likes;
-    private $dislikes;
-    private $pdo;
+    public $url;
+    public $likes;
+    public $dislikes;
 
-    function __construct($id = "", $url = "", $likes = 0, $dislikes = "")
+    /**
+     * Allows you to update class attributes
+     *
+     * @param array $donnees : Use keys as attributes to update ex : ['id'=>3,'likes'=>3] 
+     * @return void
+     */
+    public function hydrate(array $donnees)
     {
-        $this->id = $id;
-        $this->url = $url;
-        $this->likes = $likes;
-        $this->dislikes = $dislikes;
-        $this->pdo = new PDO("mysql:host=localhost;dbname=qinder", 'root', '');
+        // We make a loop with the data table
+        foreach ($donnees as $key => $value) {
+            // We recover the name of the corresponding setters
+            // if the key is id its setter is id
+            // just put the 1st letter of the key in Shift and prefix it by set
+            $method = 'set' . ucfirst($key);
+
+            // Check that the corresponding setter exists.
+            if (method_exists($this, $method)) {
+                // If it exists, it is called
+                $this->$method($value);
+            }
+        }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param int $id : the id of the Q
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    public function getId($id)
+    /**
+     * Undocumented function
+     *
+     * @return int : the number of likes of the Q
+     */
+    public function getId()
     {
-        return $this->likes;
+        return $this->id;
     }
 
+    /**
+     * Update the of Q's url
+     *
+     * @param string $url : the url to acces to the Q's picture
+     * @return void
+     */
     public function setUrl($url)
     {
         $this->url = $url;
     }
 
+    /**
+     * Update the Q's url
+     *
+     * @return string : the url to acces to the Q's picture
+     */
     public function getUrl()
     {
         return $this->url;
     }
 
+    /**
+     * Update the number of of Q's likes
+     *
+     * @param int $likes : the number of of Q's likes
+     * @return void
+     */
     public function setLikes($likes)
     {
         $this->likes = $likes;
     }
 
+    /**
+     * Return the number of likes of the Q
+     *
+     * @return int : the number of Q's likes
+     */
     public function getLikes()
     {
-        return $this->dislikes;
+        return $this->likes;
     }
 
+    /**
+     * Update the number of dislikes of the q
+     *
+     * @param int $dislikes : the number of Q's dislikes
+     * @return void
+     */
     public function setDislikes($dislikes)
     {
         $this->dislikes = $dislikes;
     }
 
+    /**
+     * Return the number of likes of the q
+     *
+     * @return int : the number of likes
+     */
     public function getDislikes()
     {
         return $this->dislikes;
     }
+
+
+
+
+    // public function update($DB){
+    //     $db->select();
+
+    // }
 
     /*function select($sql, $cond = null)
     {
