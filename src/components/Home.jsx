@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 import RandomQ from "./RandomQ";
 
 function Home() {
@@ -11,7 +12,14 @@ function Home() {
                         On espère que vous aimerez tout autant que nous. Cliquez sur le bouton et découvrez des Q du monde entier, et votez pour vos préférés!</p>
                 </div>
             </div>
-            <RandomQ />
+            <div className="row">
+                <div className="col-md-6 offset-md-3">
+                    <RandomQ />
+                </div>
+            </div>
+            <div className="col-md-4 offset-md-4">
+
+            </div>
         </div>
         /*<div className="home">
                 <div class="container">

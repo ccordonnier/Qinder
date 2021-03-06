@@ -1,5 +1,5 @@
 <?php
-include("./db_connect.php");
+//include("./db_connect.php");
 
 /**
  * Class Q represent a q
@@ -36,6 +36,16 @@ class Q
                 $this->$method($value);
             }
         }
+    }
+
+    /**
+     * Return attr to json format
+     *
+     * @return json attributes of the class
+     */
+    public function jsonFormat()
+    {
+        return json_encode(get_object_vars($this));
     }
 
     /**

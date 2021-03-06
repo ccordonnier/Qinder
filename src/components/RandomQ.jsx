@@ -12,18 +12,40 @@ class RandomQ extends React.Component {
 
     }
 
-    /*componentDidMount() {
-        axios.get(`../../../Qinder/controler.php`)
+    handleLikeClick = () => {
+        const likes = this.state.likes;
+        const id = this.state.id;
+        axios.get(`http://qinder.test/src/api/controller.php?action=addLikes&id=` + id)
             .then(res => {
+                console.log(res);
                 const Q = res.data;
                 this.setState({ Q });
             })
-    }*/
+    }
+
+    componentDidMount() {
+        axios.get(`http://qinder.test/src/api/controller.php?action=getRandomQ`)
+            .then(res => {
+                console.log(res);
+                const Q = res.data;
+                this.setState({ Q });
+            })
+    }
 
 
     render() {
-        return <div className="card">
-            <img class="rounded" src="https://cdn.dribbble.com/users/2984909/screenshots/6375612/q_logo-01_4x.jpg" alt="" />
+        return <div className="row align-items-center">
+            <div className="col-md-2">
+                <button className="btn btn-success">Like</button>
+            </div>
+            <div className="col-md-8">
+                <div className="card">
+                    <img className="rounded" src={this.state.Q.url} alt="" />
+                </div>
+            </div>
+            <div className="col-md-2">
+                <button className="btn btn-danger">Dislike</button>
+            </div>
         </div>
     }
 
