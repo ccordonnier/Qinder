@@ -13,36 +13,19 @@ function Home() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6 offset-md-3">
+                <div className="col-md-6 offset-md-3 col-sm-12">
                     <RandomQ />
                 </div>
             </div>
-            <div className="col-md-4 offset-md-4">
-
+            <div className="col-md-6 offset-md-3 col-sm-12">
+                <Link class="nav-link" to="/">
+                    <button>Envoyez nous votre Q à tulasvumonq@sitedeq.fr</button>
+                </Link>
+                <Link class="nav-link" to="/ranking">
+                    <button>Le classement qui pue pas du Q</button>
+                </Link>
             </div>
         </div>
-        /*<div className="home">
-                <div class="container">
-                    <div class="row align-items-center my-5">
-                        <div class="col-lg-7">
-                            <img
-                                class="img-fluid rounded mb-4 mb-lg-0"
-                                src="http://placehold.it/900x400"
-                                alt=""
-                            />
-                        </div>
-                        <div class="col-lg-5">
-                            <h1 class="font-weight-light">Home</h1>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s, when an unknown printer took a galley of
-                                type and scrambled it to make a type specimen book.
-            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>*/
     );
 }
 

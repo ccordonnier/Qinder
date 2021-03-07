@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
-//import Mail from 'react-icons/lib/md/mail'
 
 class RandomQ extends React.Component {
     state = {

@@ -44,7 +44,7 @@ class DB
             return $result;
         } catch (Exception $ex) {
             $this->error = $ex->getMessage();
-            return false;
+            return $this->error;
         }
     }
 
@@ -74,6 +74,20 @@ class DB
         $req_content = "SELECT * FROM q WHERE id=?";
         $req = $this->select($req_content, [$id])[0];
         return $req;
+    }
+
+    function getRanking(int $max = 6)
+    {
+        // $this->stmt = $this->pdo->prepare("UPDATE q set url=:url, likes= :likes, dislikes= :dislikes WHERE id=:id");
+        // if ($this->stmt->execute([$max])) {
+        //     return $this->getQById($cond['id']);
+        // }
+        $sql = 'SELECT * FROM Q order by (likes-dislikes) DESC,id ASC LIMIT :max';
+        $this->stmt = $this->pdo->prepare($sql);
+        $this->stmt->bindParam(':max', $max, PDO::PARAM_INT);
+        $this->stmt->execute();
+        $result = $this->stmt->fetchAll();
+        return json_encode($result);
     }
 }
 

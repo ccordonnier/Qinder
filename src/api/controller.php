@@ -40,8 +40,13 @@ if (isset($_GET['action'])) {
         $Q->hydrate($DB->getQById($id));
         $Q->addDislike($DB);
         echo getRandomQ($DB);
-        //return $Q->jsonFormat();
       }
+      break;
+
+    case 'getRanking':
+      $max = isset($_GET['max']) ? (int) $_GET['max'] : 8;
+      $ranking = $DB->getRanking($max);
+      echo ($ranking);
       break;
 
     default:
