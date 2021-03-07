@@ -7,14 +7,41 @@ require "Q.php";
 $DB = new DB();
 //$pdo = new PDO("mysql:host=localhost;dbname=qinder", 'root', '');
 
+function getRandomQ($DB)
+{
+  $randomId = rand(1, 65);
+  $Q = new Q();
+  $Q->hydrate($DB->getQById($randomId));
+  return $Q->jsonFormat();
+}
+
 if (isset($_GET['action'])) {
   switch ($_GET['action']) {
     case 'getRandomQ':
-      $randomId = rand(1, 65);
-      $Q = new Q();
-      $Q->hydrate($DB->getQById($randomId));
-      echo $Q->jsonFormat();
+      echo getRandomQ($DB);
       //return $Q->jsonFormat();
+      break;
+
+    case 'addLike':
+      if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $Q = new Q();
+        $Q->hydrate($DB->getQById($id));
+        $Q->addLike($DB);
+        echo getRandomQ($DB);
+        //return $Q->jsonFormat();
+      }
+      break;
+
+    case 'addDislike':
+      if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $Q = new Q();
+        $Q->hydrate($DB->getQById($id));
+        $Q->addDislike($DB);
+        echo getRandomQ($DB);
+        //return $Q->jsonFormat();
+      }
       break;
 
     default:

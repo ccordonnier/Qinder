@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
+//import Mail from 'react-icons/lib/md/mail'
 
 class RandomQ extends React.Component {
     state = {
@@ -13,9 +15,18 @@ class RandomQ extends React.Component {
     }
 
     handleLikeClick = () => {
-        const likes = this.state.likes;
-        const id = this.state.id;
-        axios.get(`http://qinder.test/src/api/controller.php?action=addLikes&id=` + id)
+        const id = this.state.Q.id;
+        axios.get(`http://qinder.test/src/api/controller.php?action=addLike&id=` + id)
+            .then(res => {
+                console.log(res);
+                const Q = res.data;
+                this.setState({ Q });
+            })
+    }
+
+    handleDislikeClick = () => {
+        const id = this.state.Q.id;
+        axios.get(`http://qinder.test/src/api/controller.php?action=addDislike&id=` + id)
             .then(res => {
                 console.log(res);
                 const Q = res.data;
@@ -36,15 +47,20 @@ class RandomQ extends React.Component {
     render() {
         return <div className="row align-items-center">
             <div className="col-md-2">
-                <button className="btn btn-success">Like</button>
+                <button onClick={this.handleLikeClick} className="btn btn-outline-success btn-like"><AiOutlineLike /></button>
             </div>
             <div className="col-md-8">
                 <div className="card">
+                    <div className="card-body numberImage">
+                        <span>#{this.state.Q.id}</span>
+                        <span className="badge rounded-pill bg-success nbLikes">{this.state.Q.likes}</span>
+                        <span className="badge rounded-pill bg-danger nbDislikes">{this.state.Q.dislikes}</span>
+                    </div>
                     <img className="rounded" src={this.state.Q.url} alt="" />
                 </div>
             </div>
             <div className="col-md-2">
-                <button className="btn btn-danger">Dislike</button>
+                <button onClick={this.handleDislikeClick} className="btn btn-outline-danger btn-dislike"><AiOutlineDislike /></button>
             </div>
         </div>
     }

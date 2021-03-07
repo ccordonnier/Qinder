@@ -53,24 +53,8 @@ class DB
     {
         $result = false;
         try {
-
-
-            $sql = "SELECT * FROM q WHERE id=?";
-            $result = $this->select($sql, [$cond['id']]);
-            if ($result) {
-                $result[0]['likes']++;
-            } else {
-                //echo "<pre>";
-                die($this->error);
-                //echo "</pre>";
-            }
-
             $this->stmt = $this->pdo->prepare("UPDATE q set url=:url, likes= :likes, dislikes= :dislikes WHERE id=:id");
-
-
-
-
-            if ($this->stmt->execute($result[0])) {
+            if ($this->stmt->execute($cond)) {
                 return $this->getQById($cond['id']);
             }
         } catch (Exception $ex) {
@@ -90,12 +74,6 @@ class DB
         $req_content = "SELECT * FROM q WHERE id=?";
         $req = $this->select($req_content, [$id])[0];
         return $req;
-    }
-
-    function addLikes(int $id)
-    {
-        $cond = $this->getQById($id);
-        return $this->update($cond);
     }
 }
 

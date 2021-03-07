@@ -132,6 +132,18 @@ class Q
         return $this->dislikes;
     }
 
+    public function addLike($DB)
+    {
+        $this->likes++;
+        $DB->update(get_object_vars($this));
+    }
+
+    public function addDislike($DB)
+    {
+        $this->dislikes++;
+        $DB->update(get_object_vars($this));
+    }
+
 
 
 

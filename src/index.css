@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #97c93c;
 }
 
 code {
@@ -12,3 +13,27 @@ code {
     monospace;
 }
 
+.nbLikes, .nbDislikes{
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  float: right;
+  margin: 5px;
+}
+
+.numberImage{
+  font-weight: 800;
+}
+
+.btn-like, .btn-dislike {
+  background: white;
+  font-size: 50px;
+  border-radius: 100px;
+  padding: 10px;
+  height: 70px;
+  position: relative;
+}
+
+.btn-like svg, .btn-dislike svg{
+  vertical-align: super;
+}
