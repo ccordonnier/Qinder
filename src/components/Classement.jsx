@@ -18,10 +18,11 @@ function Classement() {
                 </div>
             </div>
             <div className="col-md-6 offset-md-3">
-
-                <Link class="nav-link" to="/">
-                    <button>Je veux voter</button>
-                </Link>
+                <center>
+                    <Link class="nav-link" to="/">
+                        <button className="btn-bottom">Je veux voter</button>
+                    </Link>
+                </center>
             </div>
         </div>
     );

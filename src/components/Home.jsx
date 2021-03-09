@@ -19,11 +19,20 @@ function Home() {
             </div>
             <div className="col-md-6 offset-md-3 col-sm-12">
                 <Link class="nav-link" to="/">
-                    <button>Envoyez nous votre Q à tulasvumonq@sitedeq.fr</button>
+                    <center>
+                        <button className="btn-bottom">Envoyez nous votre Q à tulasvumonq@sitedeq.fr</button>
+                    </center>
                 </Link>
                 <Link class="nav-link" to="/ranking">
-                    <button>Le classement qui pue pas du Q</button>
+                    <center>
+                        <button className="btn-bottom">Le classement qui pue pas du Q</button>
+                    </center>
                 </Link>
+            </div>
+            <div className="col-md-4 offset-md-4 col-sm-12 logo_quincaillerie">
+                <center>
+                    <img src="./public/logo_quincaillerie.svg" />
+                </center>
             </div>
         </div>
     );

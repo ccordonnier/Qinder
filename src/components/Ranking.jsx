@@ -4,14 +4,15 @@ import axios from "axios";
 
 class Ranking extends React.Component {
     state = {
-        max: 8,
+        max: /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? 4 : 8,
         ranking: [
 
         ]
     }
 
     getRanking = (max) => {
-        axios.get(`http://qinder.test/src/api/controller.php?action=getRanking&max=` + max)
+
+        axios.get(`https://qinder-api.corentincordonnier.fr/controller.php?action=getRanking&max=` + max)
             .then(res => {
                 const ranking = res.data;
                 this.setState({ ranking });
@@ -19,9 +20,10 @@ class Ranking extends React.Component {
     }
 
     handleViewMore = () => {
-        const max = this.state.max + 8;
+
+        const max = /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? this.state.max + 4 : this.state.max + 8;
         this.setState({ max });
-        this.getRanking(this.state.max);
+        this.getRanking(max);
     }
 
 
@@ -32,11 +34,11 @@ class Ranking extends React.Component {
 
     render() {
         return <div>
-            <div className="row">
+            <div className="row rank">
                 {this.state.ranking.map(q => (
 
-                    <div className="col col-md-3" >
-                        <div className="card">
+                    <div className="col-md-3 col-sm-6" >
+                        <div className="card m-2">
                             <div className="card-body numberImage">
                                 <span>#{q.id}</span>
                                 <span className="badge rounded-pill bg-success nbLikes">{q.likes}</span>
@@ -51,7 +53,9 @@ class Ranking extends React.Component {
             </div >
             <div className="row">
                 <div className="col-md-4 offset-md-4 col-sm-12">
-                    <button onClick={this.handleViewMore}>Je veux plus de Q</button>
+                    <center>
+                        <button className="btn-bottom" onClick={this.handleViewMore}>Je veux plus de Q</button>
+                    </center>
                 </div>
             </div>
         </div>

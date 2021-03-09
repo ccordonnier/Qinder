@@ -1,11 +1,17 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Credentials: true');
-// (A) DATABASE CONNECTION
+//require_once __DIR__ . '../../vendor/autoload.php';
+//header('Access-Control-Allow-Origin: *');
+//header('Access-Control-Allow-Credentials: true');
+
 require "model.php";
 require "Q.php";
+
+//use Qinder\Http\Response;
+
+//$Response = new Response();
+
+
 $DB = new DB();
-//$pdo = new PDO("mysql:host=localhost;dbname=qinder", 'root', '');
 
 function getRandomQ($DB)
 {
@@ -19,7 +25,6 @@ if (isset($_GET['action'])) {
   switch ($_GET['action']) {
     case 'getRandomQ':
       echo getRandomQ($DB);
-      //return $Q->jsonFormat();
       break;
 
     case 'addLike':
@@ -29,7 +34,6 @@ if (isset($_GET['action'])) {
         $Q->hydrate($DB->getQById($id));
         $Q->addLike($DB);
         echo getRandomQ($DB);
-        //return $Q->jsonFormat();
       }
       break;
 
@@ -54,25 +58,3 @@ if (isset($_GET['action'])) {
       break;
   }
 }
-
-
-
-
-// //SEARCH FOR Q
-// $Q = new Q();
-
-// $Q->hydrate($DB->getQById($_GET['id']));
-
-
-
-// /*var_dump($Q);
-// var_dump($DB->addLikes($_GET['id']));*/
-// //$Q->hydrate($DB->addLikes($_GET['id']));
-// //var_dump($Q);
-
-// $results = $DB->select(
-//   "SELECT * FROM `q` WHERE `id` LIKE ?",
-//   [$_GET['id']]
-// );
-
-// //OUTPUT RESULTS

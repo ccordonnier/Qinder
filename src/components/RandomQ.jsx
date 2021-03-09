@@ -15,7 +15,7 @@ class RandomQ extends React.Component {
 
     handleLikeClick = () => {
         const id = this.state.Q.id;
-        axios.get(`http://qinder.test/src/api/controller.php?action=addLike&id=` + id)
+        axios.get(`https://qinder-api.corentincordonnier.fr/controller.php?action=addLike&id=` + id)
             .then(res => {
                 console.log(res);
                 const Q = res.data;
@@ -25,7 +25,7 @@ class RandomQ extends React.Component {
 
     handleDislikeClick = () => {
         const id = this.state.Q.id;
-        axios.get(`http://qinder.test/src/api/controller.php?action=addDislike&id=` + id)
+        axios.get(`https://qinder-api.corentincordonnier.fr/controller.php?action=addDislike&id=` + id)
             .then(res => {
                 console.log(res);
                 const Q = res.data;
@@ -34,7 +34,7 @@ class RandomQ extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://qinder.test/src/api/controller.php?action=getRandomQ`)
+        axios.get(`https://qinder-api.corentincordonnier.fr/controller.php?action=getRandomQ`)
             .then(res => {
                 console.log(res);
                 const Q = res.data;
@@ -45,20 +45,20 @@ class RandomQ extends React.Component {
 
     render() {
         return <div className="row align-items-center">
-            <div className="col-md-2">
+            <div className="col-md-2 col-like">
                 <button onClick={this.handleLikeClick} className="btn btn-outline-success btn-like"><AiOutlineLike /></button>
             </div>
             <div className="col-md-8">
-                <div className="card">
+                <div className="card Qcard">
                     <div className="card-body numberImage">
                         <span>#{this.state.Q.id}</span>
                         <span className="badge rounded-pill bg-success nbLikes">{this.state.Q.likes}</span>
                         <span className="badge rounded-pill bg-danger nbDislikes">{this.state.Q.dislikes}</span>
                     </div>
-                    <img className="rounded" src={this.state.Q.url} alt="" />
+                    <img src={this.state.Q.url} alt="" />
                 </div>
             </div>
-            <div className="col-md-2">
+            <div className="col-md-2 col-dislike">
                 <button onClick={this.handleDislikeClick} className="btn btn-outline-danger btn-dislike"><AiOutlineDislike /></button>
             </div>
         </div>

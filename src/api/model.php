@@ -78,10 +78,6 @@ class DB
 
     function getRanking(int $max = 6)
     {
-        // $this->stmt = $this->pdo->prepare("UPDATE q set url=:url, likes= :likes, dislikes= :dislikes WHERE id=:id");
-        // if ($this->stmt->execute([$max])) {
-        //     return $this->getQById($cond['id']);
-        // }
         $sql = 'SELECT * FROM Q order by (likes-dislikes) DESC,id ASC LIMIT :max';
         $this->stmt = $this->pdo->prepare($sql);
         $this->stmt->bindParam(':max', $max, PDO::PARAM_INT);

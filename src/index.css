@@ -37,3 +37,70 @@ code {
 .btn-like svg, .btn-dislike svg{
   vertical-align: super;
 }
+
+.btn-bottom{
+  border-radius: 100px;
+  border:none;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.125);
+    padding: 10px 25px;
+}
+
+.card.rounded-bottom{
+  margin-bottom: 50px;
+  border-bottom-left-radius: 50px!important;
+  border-bottom-right-radius: 50px!important;
+  text-align: center;
+}
+
+.card.rounded-bottom h1{
+  color: #97c93c;
+}
+
+.logo_quincaillerie img{
+  width: 200px;
+}
+
+.Qcard{
+  border-radius: 15px;
+}
+
+.Qcard img{
+  margin: 10px;
+}
+
+.btn-bottom{
+  margin-top: 10px;
+}
+
+.rank col-md-3{
+  padding: 0;
+}
+
+.rank row{
+  padding: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .col-like {
+    position: absolute;
+    bottom:0px;
+    left: 50vw;
+  }
+
+  .col-dislike {
+    left: 20vw;
+    bottom: -10px;
+  }
+
+  .col-sm-6{
+    width: 50%;
+  }
+
+  .rank{
+    margin: 0;
+  }
+
+  .rank .col-sm-6{
+    padding: 0;
+  }
+}
