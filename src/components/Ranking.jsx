@@ -20,7 +20,6 @@ class Ranking extends React.Component {
     }
 
     handleViewMore = () => {
-
         const max = /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? this.state.max + 4 : this.state.max + 8;
         this.setState({ max });
         this.getRanking(max);

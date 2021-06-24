@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RandomQ from "./RandomQ";
 
 function Home() {
@@ -28,11 +28,6 @@ function Home() {
                         <button className="btn-bottom">Le classement qui pue pas du Q</button>
                     </center>
                 </Link>
-            </div>
-            <div className="col-md-4 offset-md-4 col-sm-12 logo_quincaillerie">
-                <center>
-                    <img src="./public/logo_quincaillerie.svg" />
-                </center>
             </div>
         </div>
     );
