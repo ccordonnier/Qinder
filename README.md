@@ -1,6 +1,6 @@
 # Qinder
 
-Qinder, le Tinder du Q est un site permettant de liker ou disliker les plus beau Q de ta région et d'admirer leur classement.
+Application permettant de liker et disliker des images, un classement y est ensuite affiché
 
 Une démo est disponible à l'adresse https://qinder.corentincordonnier.fr
 
